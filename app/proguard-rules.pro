@@ -19,3 +19,11 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+-keep public class com.axiel7.mydrobe.models* {
+  public void set*(***);
+  public *** get*();
+  public protected private *;
+}
+
+-keepclassmembers enum com.axiel7.mydrobe.models** { *; }

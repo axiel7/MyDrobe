@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="clothingColors">
+        <item>@color/tomato</item>
+        <item>@color/tangerine</item>
+        <item>@color/banana</item>
+        <item>@color/sage</item>
+        <item>@color/peacock</item>
+        <item>@color/blueberry</item>
+        <item>@color/grape</item>
+        <item>@color/pink</item>
+        <item>@color/flamingo</item>
+        <item>@color/brown</item>
+        <item>@color/brown_light</item>
+        <item>@color/coffee</item>
+        <item>@color/graphite</item>
+        <item>@color/white_alt</item>
+        <item>@color/black</item>
+    </array>
+
+</resources>

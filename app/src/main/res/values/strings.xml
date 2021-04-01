@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">MyDrobe</string>
+    <string name="title_home">Home</string>
+    <string name="title_today">Today</string>
+    <string name="title_collection">Collection</string>
+    <string name="search">Search</string>
+    <string name="more">More</string>
+    <string name="sort">Sort</string>
+    <string name="cancel">Cancel</string>
+    <string name="apply">Apply</string>
+    <string name="save">Save</string>
+    <string name="name">Name</string>
+    <string name="winter">Winter</string>
+    <string name="spring">Spring</string>
+    <string name="summer">Summer</string>
+    <string name="fall">Fall</string>
+    <string name="add_color">Add color</string>
+    <string name="delete">Delete</string>
+    <string name="view_image">View</string>
+    <string name="replace">Replace</string>
+</resources>

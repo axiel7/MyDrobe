@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="brown_light">#FFC67F</color>
+    <color name="brown">#DF9551</color>
+    <color name="brown_dark">#A96724</color>
+    <color name="blue_light">#79889E</color>
+    <color name="blue">#4C5B70</color>
+    <color name="blue_dark">#223245</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    <!--  Clothing colors  -->
+    <color name="tomato">#C9514C</color>
+    <color name="tangerine">#E17650</color>
+    <color name="banana">#E6C35F</color>
+    <color name="basil">#548E68</color>
+    <color name="sage">#66B286</color>
+    <color name="peacock">#56A5DD</color>
+    <color name="blueberry">#656FB8</color>
+    <color name="lavender">#8089C4</color>
+    <color name="grape">#9556AE</color>
+    <color name="pink">#EC407A</color>
+    <color name="flamingo">#D48980</color>
+    <color name="coffee">#795548</color>
+    <color name="graphite">#737373</color>
+    <color name="white_alt">#F0F0F0</color>
+</resources>

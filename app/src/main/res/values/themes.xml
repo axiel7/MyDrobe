@@ -1,0 +1,96 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.MyDrobe" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/blue</item>
+        <item name="colorPrimaryVariant">@color/blue_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/brown</item>
+        <item name="colorSecondaryVariant">@color/brown_dark</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <!-- Customize your theme here. -->
+        <!-- <item name="android:textColorSecondary">@android:color/white</item> -->
+        <item name="actionOverflowButtonStyle">@style/OverflowButtonStyle</item>
+        <item name="alertDialogTheme">@style/AlertDialog</item>
+        <item name="bottomSheetDialogTheme">@style/BottomSheetDialog</item>
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/AppShapeAppearance.LargeComponent</item>
+    </style>
+
+    <style name="OverflowButtonStyle" parent="Widget.AppCompat.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_more_24</item>
+        <item name="srcCompat">@drawable/ic_more_24</item>
+    </style>
+
+    <!-- Alert dialog -->
+    <style name="AlertDialog" parent="ThemeOverlay.MaterialComponents.Dialog">
+        <item name="shapeAppearance">@style/AppShapeAppearance.MediumComponent</item>
+    </style>
+
+    <!-- Chips -->
+    <style name="Widget.App.Chip.Choice" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="ensureMinTouchTargetSize">true</item>
+        <item name="chipIconEnabled">true</item>
+        <item name="chipIconTint">@color/chip_icon_tint</item>
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.Chip</item>
+    </style>
+
+    <style name="ThemeOverlay.App.Chip" parent="">
+        <item name="colorPrimary">@color/brown</item>
+    </style>
+
+    <!-- Bottom sheet dialog -->
+    <style name="BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="android:navigationBarColor">?attr/colorSurface</item>
+        <item name="bottomSheetStyle">@style/BottomSheetRounded</item>
+    </style>
+
+    <style name="BottomSheetRounded" parent="Widget.MaterialComponents.BottomSheet">
+        <item name="shapeAppearanceOverlay">@style/AppShapeAppearance.BottomSheet</item>
+    </style>
+
+    <!-- Tab layout style -->
+    <style name="Theme.Widget.Tabs" parent="Widget.MaterialComponents.TabLayout">
+        <item name="tabGravity">fill</item>
+        <item name="tabIndicator">@drawable/tab_indicator</item>
+        <item name="tabIndicatorFullWidth">false</item>
+        <item name="tabIndicatorHeight">3dp</item>
+        <item name="tabInlineLabel">true</item>
+        <item name="tabMinWidth">75dp</item>
+        <item name="tabMode">fixed</item>
+        <item name="tabIndicatorColor">?attr/colorAccent</item>
+        <item name="tabSelectedTextColor">?attr/colorAccent</item>
+        <item name="shapeAppearanceSmallComponent">@style/AppShapeAppearance.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/AppShapeAppearance.MediumComponent</item>
+        <item name="shapeAppearanceLargeComponent">@style/AppShapeAppearance.LargeComponent</item>
+    </style>
+
+    <!-- Material shapes styles -->
+    <style name="AppShapeAppearance.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">5dp</item>
+    </style>
+    <style name="AppShapeAppearance.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="AppShapeAppearance.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+    <style name="AppShapeAppearance.BottomSheet" parent="ShapeAppearance.MaterialComponents.MediumComponent">
+        <item name="cornerFamilyTopRight">rounded</item>
+        <item name="cornerFamilyTopLeft">rounded</item>
+        <item name="cornerSizeTopRight">8dp</item>
+        <item name="cornerSizeTopLeft">8dp</item>
+        <item name="cornerSizeBottomLeft">0dp</item>
+        <item name="cornerSizeBottomRight">0dp</item>
+    </style>
+
+</resources>

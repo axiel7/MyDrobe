@@ -166,13 +166,15 @@ class DetailsFragment : BottomSheetDialogFragment() {
     }
 
     private fun addColor(hex: String) {
-        if (clothingViewModel.selectedItem.value?.colors?.contains(hex) == false) {
+        if (clothingViewModel.selectedItem.value?.colors?.contains(hex) == false
+                && !colorsToAdd.contains(hex)) {
             colorsToAdd.add(hex)
             addChipColor(hex)
         }
     }
 
     private fun removeColor(hex: String) {
+        colorsToAdd.remove(hex)
         if (clothingViewModel.selectedItem.value?.colors?.contains(hex) == true) {
             colorsToRemove.add(hex)
         }

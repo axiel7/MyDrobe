@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.axiel7.mydrobe.MainActivity
 import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.adapters.ClothingAdapter
 import com.axiel7.mydrobe.databinding.FragmentSearchBinding
@@ -61,7 +62,7 @@ class SearchFragment : Fragment() {
         })
 
         adapter = ClothingAdapter(requireContext(),
-                onClickListener = { _, item -> (parentFragment as HomeFragment).openDetails(item) }
+                onClickListener = { _, item -> (activity as MainActivity).openDetails(item) }
         )
         binding.searchRecyclerView.adapter = adapter
 

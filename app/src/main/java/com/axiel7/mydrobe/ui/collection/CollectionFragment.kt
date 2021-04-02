@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.axiel7.mydrobe.MainActivity
 import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.adapters.ClothingAdapter
 import com.axiel7.mydrobe.databinding.FragmentCollectionBinding
@@ -49,7 +50,7 @@ class CollectionFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         adapter = ClothingAdapter(requireContext(),
-            onClickListener = { _, item -> (parentFragment as HomeFragment).openDetails(item) }
+            onClickListener = { _, item -> (activity as MainActivity).openDetails(item) }
         )
 
         binding.collectionRecyclerView.adapter = adapter

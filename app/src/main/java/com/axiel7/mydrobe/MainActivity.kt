@@ -5,7 +5,9 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.WindowCompat
 import com.axiel7.mydrobe.databinding.ActivityMainBinding
+import com.axiel7.mydrobe.models.Clothing
 import com.axiel7.mydrobe.models.ClothingViewModel
+import com.axiel7.mydrobe.ui.details.DetailsFragment
 import com.axiel7.mydrobe.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +25,13 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container, HomeFragment())
+            .replace(R.id.container, HomeFragment(), "home")
             .commit()
+    }
+
+    fun openDetails(item: Clothing?) {
+        clothingViewModel.selectItem(item)
+        val newFragment = DetailsFragment()
+        newFragment.show(supportFragmentManager, newFragment.tag)
     }
 }

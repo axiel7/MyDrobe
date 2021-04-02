@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.axiel7.mydrobe.MainActivity
 import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.R
 import com.axiel7.mydrobe.databinding.FragmentHomeBinding
@@ -73,7 +74,7 @@ class HomeFragment : Fragment() {
         }
 
         binding.homeFab.setOnClickListener {
-            openDetails(null)
+            (activity as MainActivity).openDetails(null)
         }
     }
 
@@ -100,12 +101,6 @@ class HomeFragment : Fragment() {
 
     fun showFab() {
         binding.homeFab.show()
-    }
-
-    fun openDetails(item: Clothing?) {
-        clothingViewModel.selectItem(item)
-        val newFragment = DetailsFragment()
-        newFragment.show(parentFragmentManager, newFragment.tag)
     }
 
     private fun openSearch() {

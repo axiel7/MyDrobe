@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.R
 import com.axiel7.mydrobe.databinding.FragmentHomeBinding
 import com.axiel7.mydrobe.models.Clothing
@@ -24,7 +25,9 @@ import com.google.android.material.transition.MaterialSharedAxis
 class HomeFragment : Fragment() {
 
     private lateinit var safeContext: Context
-    private val clothingViewModel: ClothingViewModel by activityViewModels()
+    private val clothingViewModel: ClothingViewModel by activityViewModels {
+        ClothingViewModel.provideFactory(MyApplication.clothesRepository)
+    }
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 

@@ -19,6 +19,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.R
 import com.axiel7.mydrobe.databinding.FragmentCameraBinding
 import com.axiel7.mydrobe.models.ClothingViewModel
@@ -32,7 +33,9 @@ import java.util.concurrent.Executors
 
 class CameraFragment : Fragment() {
 
-    private val clothingViewModel: ClothingViewModel by activityViewModels()
+    private val clothingViewModel: ClothingViewModel by activityViewModels {
+        ClothingViewModel.provideFactory(MyApplication.clothesRepository)
+    }
     private var _binding: FragmentCameraBinding? = null
     private val binding get() = _binding!!
     private var imageCapture: ImageCapture? = null

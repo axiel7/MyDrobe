@@ -4,6 +4,7 @@ import android.app.Application
 import coil.ImageLoader
 import coil.ImageLoaderFactory
 import coil.util.CoilUtils
+import com.axiel7.mydrobe.repository.ClothesRepository
 import com.axiel7.mydrobe.room.DrobeDatabase
 import com.axiel7.mydrobe.utils.SharedPrefsHelpers
 import okhttp3.OkHttpClient
@@ -14,6 +15,7 @@ class MyApplication : Application(), ImageLoaderFactory {
         super.onCreate()
         SharedPrefsHelpers.init(applicationContext)
         drobeDb = DrobeDatabase.getInstance(applicationContext)
+        clothesRepository = ClothesRepository(drobeDb.clothesDao())
     }
 
     override fun newImageLoader(): ImageLoader {
@@ -30,5 +32,6 @@ class MyApplication : Application(), ImageLoaderFactory {
 
     companion object {
         lateinit var drobeDb: DrobeDatabase
+        lateinit var clothesRepository: ClothesRepository
     }
 }

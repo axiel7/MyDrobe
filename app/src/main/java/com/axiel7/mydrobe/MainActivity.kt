@@ -11,7 +11,9 @@ import com.axiel7.mydrobe.ui.home.HomeFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
-    private val clothingViewModel: ClothingViewModel by viewModels()
+    private val clothingViewModel: ClothingViewModel by viewModels {
+        ClothingViewModel.provideFactory(MyApplication.clothesRepository)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

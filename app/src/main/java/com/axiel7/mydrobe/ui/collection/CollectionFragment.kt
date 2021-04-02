@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
+import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.adapters.ClothingAdapter
 import com.axiel7.mydrobe.databinding.FragmentCollectionBinding
 import com.axiel7.mydrobe.ui.home.HomeFragment
@@ -36,8 +37,9 @@ class CollectionFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        collectionViewModel =
-                ViewModelProvider(this).get(CollectionViewModel::class.java)
+        collectionViewModel = ViewModelProvider(this,
+                CollectionViewModel.provideFactory(MyApplication.clothesRepository))
+                .get(CollectionViewModel::class.java)
         _binding = FragmentCollectionBinding.inflate(inflater, container, false)
 
         return binding.root

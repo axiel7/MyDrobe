@@ -1,14 +1,10 @@
 package com.axiel7.mydrobe.models
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.axiel7.mydrobe.MyApplication
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
+import androidx.lifecycle.*
+import com.axiel7.mydrobe.repository.ClothesRepository
 import kotlinx.coroutines.launch
 
-class ClothingViewModel : ViewModel() {
+class ClothingViewModel(private val clothesRepository: ClothesRepository) : ViewModel() {
 
     private val exampleData = mutableListOf(
             Clothing(name = "Jeans"),
@@ -22,23 +18,23 @@ class ClothingViewModel : ViewModel() {
     )
 
     val clothes: LiveData<List<Clothing>> =
-            MyApplication.drobeDb.clothesDao().getClothes()
+            clothesRepository.getClothing().asLiveData()
 
-    fun insertClothing(clothing: Clothing) {
-        CoroutineScope(Dispatchers.IO).launch {
-            MyApplication.drobeDb.clothesDao().addClothing(clothing)
+    fun addClothing(clothing: Clothing) {
+        viewModelScope.launch {
+            clothesRepository.createClothing(clothing)
         }
     }
 
     fun updateClothing(clothing: Clothing) {
-        CoroutineScope(Dispatchers.IO).launch {
-            MyApplication.drobeDb.clothesDao().updateClothing(clothing)
+        viewModelScope.launch {
+            clothesRepository.updateClothing(clothing)
         }
     }
 
     fun deleteClothing(clothing: Clothing) {
-        CoroutineScope(Dispatchers.IO).launch {
-            MyApplication.drobeDb.clothesDao().removeClothing(clothing)
+        viewModelScope.launch {
+            clothesRepository.removeClothing(clothing)
         }
     }
 
@@ -49,4 +45,14 @@ class ClothingViewModel : ViewModel() {
         _selectedItem.value = item
     }
 
+    companion object {
+        fun provideFactory(
+                clothesRepository: ClothesRepository
+        ) : ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return ClothingViewModel(clothesRepository) as T
+            }
+        }
+    }
 }

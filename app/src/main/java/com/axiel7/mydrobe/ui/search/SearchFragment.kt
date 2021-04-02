@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.adapters.ClothingAdapter
 import com.axiel7.mydrobe.databinding.FragmentSearchBinding
 import com.axiel7.mydrobe.ui.home.HomeFragment
@@ -30,7 +31,9 @@ class SearchFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View {
-        searchViewModel = ViewModelProvider(this).get(SearchViewModel::class.java)
+        searchViewModel = ViewModelProvider(this,
+                SearchViewModel.provideFactory(MyApplication.clothesRepository))
+                .get(SearchViewModel::class.java)
         _binding = FragmentSearchBinding.inflate(inflater, container, false)
         return binding.root
     }

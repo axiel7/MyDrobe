@@ -14,6 +14,7 @@ import androidx.appcompat.widget.PopupMenu
 import androidx.fragment.app.activityViewModels
 import coil.load
 import coil.size.Scale
+import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.R
 import com.axiel7.mydrobe.databinding.FragmentDetailsBinding
 import com.axiel7.mydrobe.models.Clothing
@@ -31,7 +32,9 @@ import java.net.URI
 
 class DetailsFragment : BottomSheetDialogFragment() {
 
-    private val clothingViewModel: ClothingViewModel by activityViewModels()
+    private val clothingViewModel: ClothingViewModel by activityViewModels {
+        ClothingViewModel.provideFactory(MyApplication.clothesRepository)
+    }
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
     private var isNewItem = false
@@ -136,7 +139,7 @@ class DetailsFragment : BottomSheetDialogFragment() {
 
         val newFragment = CameraFragment()
         childFragmentManager.beginTransaction()
-            .replace(R.id.imageContainer, newFragment, newFragment.tag)
+            .add(R.id.imageContainer, newFragment, newFragment.tag)
             .addToBackStack(newFragment.tag)
             .commit()
     }
@@ -164,7 +167,7 @@ class DetailsFragment : BottomSheetDialogFragment() {
         clothingViewModel.selectedItem.value?.colors?.addAll(colorsToAdd)
         clothingViewModel.selectItem(clothingViewModel.selectedItem.value)
         if (isNewItem) {
-            clothingViewModel.insertClothing(clothingViewModel.selectedItem.value!!)
+            clothingViewModel.addClothing(clothingViewModel.selectedItem.value!!)
         }
         else {
             clothingViewModel.updateClothing(clothingViewModel.selectedItem.value!!)

@@ -22,6 +22,7 @@ import com.axiel7.mydrobe.models.Season
 import com.axiel7.mydrobe.ui.camera.CameraFragment
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.chip.Chip
 import com.google.android.material.transition.MaterialSharedAxis
@@ -125,11 +126,17 @@ class DetailsFragment : BottomSheetDialogFragment() {
     }
 
     private fun openCamera() {
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Y, true)
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Y, false)
+        BottomSheetBehavior.from(
+                dialog!!.findViewById(com.google.android.material.R.id.design_bottom_sheet)
+        ).state = BottomSheetBehavior.STATE_EXPANDED
+
+        val params = binding.imageContainer.layoutParams as ViewGroup.MarginLayoutParams
+        params.height = binding.bottomContainer.height
+        binding.imageContainer.layoutParams = params
+
         val newFragment = CameraFragment()
         childFragmentManager.beginTransaction()
-            .add(R.id.imageContainer, newFragment, newFragment.tag)
+            .replace(R.id.imageContainer, newFragment, newFragment.tag)
             .addToBackStack(newFragment.tag)
             .commit()
     }
@@ -231,6 +238,12 @@ class DetailsFragment : BottomSheetDialogFragment() {
             }
         }
         popup.show()
+    }
+
+    fun restoreImageParams() {
+        val params = binding.imageContainer.layoutParams as ViewGroup.MarginLayoutParams
+        params.height = ViewGroup.LayoutParams.WRAP_CONTENT
+        binding.imageContainer.layoutParams = params
     }
 
     override fun onDestroy() {

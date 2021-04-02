@@ -22,6 +22,7 @@ import androidx.fragment.app.activityViewModels
 import com.axiel7.mydrobe.R
 import com.axiel7.mydrobe.databinding.FragmentCameraBinding
 import com.axiel7.mydrobe.models.ClothingViewModel
+import com.axiel7.mydrobe.ui.details.DetailsFragment
 import java.io.File
 import java.net.URI
 import java.text.SimpleDateFormat
@@ -58,7 +59,10 @@ class CameraFragment : Fragment() {
 
         // Set up the listener for take photo button
         binding.captureButton.setOnClickListener { takePhoto() }
-        binding.closeButton.setOnClickListener { parentFragmentManager.popBackStack() }
+        binding.closeButton.setOnClickListener {
+            (parentFragment as DetailsFragment).restoreImageParams()
+            parentFragmentManager.popBackStack()
+        }
 
         outputDirectory = getOutputDirectory()
 
@@ -97,6 +101,7 @@ class CameraFragment : Fragment() {
                     val msg = "Photo saved"
                     Toast.makeText(safeContext, msg, Toast.LENGTH_SHORT).show()
                     Log.d(TAG, msg)
+                    (parentFragment as DetailsFragment).restoreImageParams()
                     parentFragmentManager.popBackStack()
                 }
             })

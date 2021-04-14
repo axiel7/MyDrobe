@@ -6,13 +6,9 @@ import com.axiel7.mydrobe.repository.ClothesRepository
 
 class CollectionViewModel(private val clothesRepository: ClothesRepository) : ViewModel() {
 
-    var clothes: LiveData<List<Clothing>>
     private val _order = MutableLiveData("id")
-
-    init {
-        clothes = Transformations.switchMap(_order) {
-            clothesRepository.getClothing(it).asLiveData()
-        }
+    var clothes: LiveData<List<Clothing>> = Transformations.switchMap(_order) {
+        clothesRepository.getClothing(it).asLiveData()
     }
 
     fun setOrder(sort: String) {

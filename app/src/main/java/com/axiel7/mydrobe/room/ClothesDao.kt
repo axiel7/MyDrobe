@@ -1,7 +1,9 @@
 package com.axiel7.mydrobe.room
 
 import androidx.room.*
+import androidx.room.TypeConverters
 import com.axiel7.mydrobe.models.Clothing
+import com.axiel7.mydrobe.models.Season
 import kotlinx.coroutines.flow.Flow
 
 @Dao

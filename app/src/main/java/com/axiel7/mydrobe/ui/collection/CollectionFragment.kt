@@ -21,7 +21,7 @@ class CollectionFragment : Fragment() {
     private lateinit var adapter: ClothingAdapter
     private lateinit var collectionViewModel: CollectionViewModel
     private lateinit var safeContext: Context
-    private lateinit var sharedPrefs: SharedPrefsHelpers
+    private val sharedPrefs = SharedPrefsHelpers.instance!!
     private var _binding: FragmentCollectionBinding? = null
     private val binding get() = _binding!!
     private var sort: String = "id"
@@ -29,7 +29,6 @@ class CollectionFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        sharedPrefs = SharedPrefsHelpers.instance!!
         sortId = sharedPrefs.getInt("collectionSort", 0)
     }
 
@@ -49,7 +48,7 @@ class CollectionFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        adapter = ClothingAdapter(requireContext(),
+        adapter = ClothingAdapter(safeContext,
             onClickListener = { _, item -> (activity as MainActivity).openDetails(item) }
         )
 

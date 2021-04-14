@@ -90,7 +90,7 @@ class HomeFragment : Fragment() {
 
     private fun openSortOptions() {
         when (binding.homeViewPager.currentItem) {
-            0 -> (childFragmentManager.findFragmentByTag("f0") as TodayFragment)
+            0 -> (childFragmentManager.findFragmentByTag("f0") as TodayFragment).sortItems()
             1 -> (childFragmentManager.findFragmentByTag("f1") as CollectionFragment).sortItems()
         }
     }

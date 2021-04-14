@@ -1,12 +1,31 @@
 package com.axiel7.mydrobe.ui.today
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
+import com.axiel7.mydrobe.models.Clothing
+import com.axiel7.mydrobe.repository.ClothesRepository
+import com.axiel7.mydrobe.utils.CalendarHelper
 
-class TodayViewModel : ViewModel() {
-    private val _text = MutableLiveData<String>().apply {
-        value = "Coming soon"
+class TodayViewModel(private val clothesRepository: ClothesRepository) : ViewModel() {
+
+    private val season = CalendarHelper.getSeason()
+    private val _order = MutableLiveData("id")
+    val clothes: LiveData<List<Clothing>> = Transformations.switchMap(_order) {
+        clothesRepository.getClothesBySeason("%${season.name}%", it).asLiveData()
     }
-    val text: LiveData<String> = _text
+
+    fun setOrder(sort: String) {
+        _order.postValue(sort)
+    }
+
+    companion object {
+        fun provideFactory(
+            clothesRepository: ClothesRepository
+        ) : ViewModelProvider.Factory = object : ViewModelProvider.Factory {
+            @Suppress("UNCHECKED_CAST")
+            override fun <T : ViewModel?> create(modelClass: Class<T>): T {
+                return TodayViewModel(clothesRepository) as T
+            }
+        }
+    }
+
 }

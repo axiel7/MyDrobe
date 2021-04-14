@@ -11,6 +11,19 @@ class TypeConverters {
     private val gson = Gson()
 
     @TypeConverter
+    fun stringToSeason(data: String?): Season? {
+        if (data == null) {
+            return null
+        }
+        val type: Type = object : TypeToken<Season?>() {}.type
+        return gson.fromJson<Season?>(data, type)
+    }
+    @TypeConverter
+    fun seasonToString(someObject: Season?): String? {
+        return gson.toJson(someObject)
+    }
+
+    @TypeConverter
     fun stringToListSeason(data: String?): List<Season?>? {
         if (data == null) {
             return Collections.emptyList()

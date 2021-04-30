@@ -1,9 +1,11 @@
 package com.axiel7.mydrobe.ui.search
 
+import android.content.Context.INPUT_METHOD_SERVICE
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -46,8 +48,8 @@ class SearchFragment : Fragment() {
             binding.search.clearFocus()
             parentFragmentManager.popBackStack()
         }
-        binding.search.isIconified = false
-        //binding.searchView.requestFocus()
+
+        binding.search.postDelayed({ binding.search.showKeyboard() }, 50)
         binding.search.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchViewModel.search(query ?: "")
@@ -69,5 +71,11 @@ class SearchFragment : Fragment() {
             adapter.setData(it)
         })
 
+    }
+
+    private fun SearchView.showKeyboard() {
+        val inputMethodManager = requireActivity().getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
+        requestFocus()
+        inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY)
     }
 }

@@ -15,11 +15,8 @@ import com.axiel7.mydrobe.MainActivity
 import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.R
 import com.axiel7.mydrobe.databinding.FragmentHomeBinding
-import com.axiel7.mydrobe.models.Clothing
 import com.axiel7.mydrobe.models.ClothingViewModel
 import com.axiel7.mydrobe.ui.collection.CollectionFragment
-import com.axiel7.mydrobe.ui.details.DetailsFragment
-import com.axiel7.mydrobe.ui.search.SearchFragment
 import com.axiel7.mydrobe.ui.today.TodayFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
@@ -61,7 +58,7 @@ class HomeFragment : Fragment() {
             }
         }.attach()
 
-        binding.homeBottomAppBar.setOnMenuItemClickListener {
+        binding.homeBottomAppbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.search -> {
                     findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
@@ -109,7 +106,7 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
             bottomSheet.dismiss()
         }
-        binding.homeBottomAppBar.setNavigationOnClickListener { bottomSheet.show() }
+        binding.homeBottomAppbar.setNavigationOnClickListener { bottomSheet.show() }
     }
 
     fun hideFab() {

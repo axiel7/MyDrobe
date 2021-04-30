@@ -8,7 +8,6 @@ import com.axiel7.mydrobe.databinding.ActivityMainBinding
 import com.axiel7.mydrobe.models.Clothing
 import com.axiel7.mydrobe.models.ClothingViewModel
 import com.axiel7.mydrobe.ui.details.DetailsFragment
-import com.axiel7.mydrobe.ui.home.HomeFragment
 
 class MainActivity : AppCompatActivity() {
 

@@ -113,10 +113,10 @@ class DetailsFragment : BottomSheetDialogFragment() {
                 }
                 for (season in it.seasons) {
                     when (season) {
-                        Season.WINTER -> binding.seasonChipGroup.check(R.id.winterChip)
-                        Season.SPRING -> binding.seasonChipGroup.check(R.id.springChip)
-                        Season.SUMMER -> binding.seasonChipGroup.check(R.id.summerChip)
-                        Season.FALL -> binding.seasonChipGroup.check(R.id.fallChip)
+                        Season.WINTER -> binding.seasonChipGroup.check(R.id.winter_chip)
+                        Season.SPRING -> binding.seasonChipGroup.check(R.id.spring_chip)
+                        Season.SUMMER -> binding.seasonChipGroup.check(R.id.summer_chip)
+                        Season.FALL -> binding.seasonChipGroup.check(R.id.fall_chip)
                         Season.NONE -> binding.seasonChipGroup.clearCheck()
                     }
                 }
@@ -139,7 +139,7 @@ class DetailsFragment : BottomSheetDialogFragment() {
 
         val newFragment = CameraFragment()
         childFragmentManager.beginTransaction()
-            .add(R.id.imageContainer, newFragment, newFragment.tag)
+            .add(R.id.image_container, newFragment, newFragment.tag)
             .addToBackStack(newFragment.tag)
             .commit()
     }
@@ -154,10 +154,10 @@ class DetailsFragment : BottomSheetDialogFragment() {
         else {
             for (id in checkedSeasons) {
                 when (id) {
-                    R.id.winterChip -> seasons.add(Season.WINTER)
-                    R.id.springChip -> seasons.add(Season.SPRING)
-                    R.id.summerChip -> seasons.add(Season.SUMMER)
-                    R.id.fallChip -> seasons.add(Season.FALL)
+                    R.id.winter_chip -> seasons.add(Season.WINTER)
+                    R.id.spring_chip -> seasons.add(Season.SPRING)
+                    R.id.summer_chip -> seasons.add(Season.SUMMER)
+                    R.id.fall_chip -> seasons.add(Season.FALL)
                 }
             }
         }

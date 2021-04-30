@@ -1,7 +1,6 @@
 package com.axiel7.mydrobe.repository
 
 import com.axiel7.mydrobe.models.Clothing
-import com.axiel7.mydrobe.models.Season
 import com.axiel7.mydrobe.room.ClothesDao
 
 class ClothesRepository(private val clothesDao: ClothesDao) {

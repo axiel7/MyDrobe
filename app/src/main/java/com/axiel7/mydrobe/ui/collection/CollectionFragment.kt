@@ -52,8 +52,8 @@ class CollectionFragment : Fragment() {
             onClickListener = { _, item -> (activity as MainActivity).openDetails(item) }
         )
 
-        binding.collectionRecyclerView.adapter = adapter
-        binding.collectionRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.collectionList.adapter = adapter
+        binding.collectionList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 0) {

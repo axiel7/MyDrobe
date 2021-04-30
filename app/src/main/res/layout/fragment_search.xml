@@ -35,7 +35,7 @@
 
             <androidx.appcompat.widget.SearchView
                 android:theme="@style/ThemeOverlay.MaterialComponents.ActionBar"
-                android:id="@+id/searchView"
+                android:id="@+id/search"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:iconifiedByDefault="false"

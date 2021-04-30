@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/sheetContainer"
+    android:id="@+id/sheet_container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -53,14 +53,14 @@
         android:layout_height="match_parent">
 
         <LinearLayout
-            android:id="@+id/bottomContainer"
+            android:id="@+id/bottom_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
             android:paddingBottom="48dp">
 
             <FrameLayout
-                android:id="@+id/imageContainer"
+                android:id="@+id/image_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
@@ -88,7 +88,7 @@
                 android:orientation="vertical">
 
                 <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/nameTextLayout"
+                    android:id="@+id/name_text_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -96,7 +96,7 @@
                     style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
 
                     <com.google.android.material.textfield.TextInputEditText
-                        android:id="@+id/nameTextEdit"
+                        android:id="@+id/name_text_edit"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:inputType="textCapSentences"/>
@@ -104,13 +104,13 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/seasonChipGroup"
+                    android:id="@+id/season_chip_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp">
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/winterChip"
+                        android:id="@+id/winter_chip"
                         style="@style/Widget.App.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -119,7 +119,7 @@
                         app:chipIconEnabled="true" />
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/springChip"
+                        android:id="@+id/spring_chip"
                         style="@style/Widget.App.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -128,7 +128,7 @@
                         app:chipIconEnabled="true" />
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/summerChip"
+                        android:id="@+id/summer_chip"
                         style="@style/Widget.App.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -137,7 +137,7 @@
                         app:chipIconEnabled="true" />
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/fallChip"
+                        android:id="@+id/fall_chip"
                         style="@style/Widget.App.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -148,13 +148,13 @@
                 </com.google.android.material.chip.ChipGroup>
 
                 <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/colorChipGroup"
+                    android:id="@+id/color_chip_group"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp">
 
                     <com.google.android.material.chip.Chip
-                        android:id="@+id/addColorChip"
+                        android:id="@+id/add_color_chip"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/add_color"
@@ -168,7 +168,7 @@
             </androidx.appcompat.widget.LinearLayoutCompat>
 
             <Button
-                android:id="@+id/deleteButton"
+                android:id="@+id/delete_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="32dp"

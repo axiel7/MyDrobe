@@ -45,8 +45,8 @@ class TodayFragment : Fragment() {
         adapter = ClothingAdapter(safeContext,
             onClickListener = { _, item -> (activity as MainActivity).openDetails(item) }
         )
-        binding.todayRecyclerView.adapter = adapter
-        binding.todayRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+        binding.todayList.adapter = adapter
+        binding.todayList.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
                 super.onScrolled(recyclerView, dx, dy)
                 if (dy > 0) {

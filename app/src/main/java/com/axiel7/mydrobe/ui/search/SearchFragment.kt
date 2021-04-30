@@ -44,12 +44,12 @@ class SearchFragment : Fragment() {
 
         binding.loading.hide()
         binding.back.setOnClickListener {
-            binding.searchView.clearFocus()
+            binding.search.clearFocus()
             parentFragmentManager.popBackStack()
         }
-        binding.searchView.isIconified = false
-        binding.searchView.requestFocus()
-        binding.searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+        binding.search.isIconified = false
+        //binding.searchView.requestFocus()
+        binding.search.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 searchViewModel.search(query ?: "")
                 return true

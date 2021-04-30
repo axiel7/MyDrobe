@@ -20,7 +20,7 @@ import com.axiel7.mydrobe.ui.collection.CollectionFragment
 import com.axiel7.mydrobe.ui.today.TodayFragment
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
-import com.google.android.material.transition.MaterialSharedAxis
+import com.google.android.material.transition.MaterialFadeThrough
 
 class HomeFragment : Fragment() {
 
@@ -33,8 +33,8 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+        exitTransition = MaterialFadeThrough()
+        //reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
     }
 
     override fun onCreateView(

@@ -11,8 +11,7 @@ import com.axiel7.mydrobe.MainActivity
 import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.adapters.ClothingAdapter
 import com.axiel7.mydrobe.databinding.FragmentSearchBinding
-import com.axiel7.mydrobe.ui.home.HomeFragment
-import com.google.android.material.transition.MaterialSharedAxis
+import com.google.android.material.transition.MaterialFadeThrough
 
 class SearchFragment : Fragment() {
 
@@ -23,8 +22,8 @@ class SearchFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        exitTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
-        reenterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+        enterTransition = MaterialFadeThrough()
+        //returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
     }
 
     override fun onCreateView(

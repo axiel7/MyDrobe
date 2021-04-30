@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:minHeight="?attr/actionBarSize"
         android:fitsSystemWindows="true"
-        android:background="?attr/colorSurface"
+        android:background="?android:windowBackground"
         app:elevation="0dp">
 
         <LinearLayout

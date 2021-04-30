@@ -48,7 +48,6 @@
 
     <!-- Bottom sheet dialog -->
     <style name="BottomSheetDialog" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
-        <item name="android:navigationBarColor">?attr/colorSurface</item>
         <item name="bottomSheetStyle">@style/BottomSheetRounded</item>
     </style>
 

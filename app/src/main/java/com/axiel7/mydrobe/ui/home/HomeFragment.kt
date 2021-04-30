@@ -20,6 +20,7 @@ import com.axiel7.mydrobe.ui.collection.CollectionFragment
 import com.axiel7.mydrobe.ui.details.DetailsFragment
 import com.axiel7.mydrobe.ui.search.SearchFragment
 import com.axiel7.mydrobe.ui.today.TodayFragment
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.transition.MaterialSharedAxis
 
@@ -73,6 +74,8 @@ class HomeFragment : Fragment() {
             }
         }
 
+        setupBottomSheet()
+
         binding.homeFab.setOnClickListener {
             (activity as MainActivity).openDetails(null)
         }
@@ -93,6 +96,19 @@ class HomeFragment : Fragment() {
             0 -> (childFragmentManager.findFragmentByTag("f0") as TodayFragment).sortItems()
             1 -> (childFragmentManager.findFragmentByTag("f1") as CollectionFragment).sortItems()
         }
+    }
+
+    private fun setupBottomSheet() {
+        val bottomSheet = BottomSheetDialog(safeContext).apply {
+            setContentView(R.layout.bottom_sheet_main)
+        }
+        val share = bottomSheet.findViewById<TextView>(R.id.action_share)
+        val settings = bottomSheet.findViewById<TextView>(R.id.action_settings)
+        settings?.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)
+            bottomSheet.dismiss()
+        }
+        binding.homeBottomAppBar.setNavigationOnClickListener { bottomSheet.show() }
     }
 
     fun hideFab() {

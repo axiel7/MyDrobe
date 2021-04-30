@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.axiel7.mydrobe.MainActivity
 import com.axiel7.mydrobe.MyApplication
@@ -60,10 +61,10 @@ class HomeFragment : Fragment() {
             }
         }.attach()
 
-        binding.homeBottomAppBar.setOnMenuItemClickListener { menuItem ->
-            when (menuItem.itemId) {
+        binding.homeBottomAppBar.setOnMenuItemClickListener {
+            when (it.itemId) {
                 R.id.search -> {
-                    openSearch()
+                    findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
                     true
                 }
                 R.id.sort -> {
@@ -117,14 +118,6 @@ class HomeFragment : Fragment() {
 
     fun showFab() {
         binding.homeFab.show()
-    }
-
-    private fun openSearch() {
-        val newFragment = SearchFragment()
-        parentFragmentManager.beginTransaction()
-                .add(R.id.container, newFragment, newFragment.tag)
-                .addToBackStack(newFragment.tag)
-                .commit()
     }
 
     class TabViewPagerAdapter(fm: FragmentManager, lf: Lifecycle) : FragmentStateAdapter(fm, lf) {

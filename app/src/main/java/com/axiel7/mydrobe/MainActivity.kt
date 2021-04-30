@@ -24,9 +24,6 @@ class MainActivity : AppCompatActivity() {
         val view = binding.root
         setContentView(view)
 
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.container, HomeFragment(), "home")
-            .commit()
     }
 
     fun openDetails(item: Clothing?) {

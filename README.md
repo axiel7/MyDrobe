@@ -2,3 +2,9 @@
 Android app to organize your wardrobe
 
 **WIP**
+
+Small project to learn how to use the latest Android technologies such as:
+* MVVM
+* Single activity
+* View binding
+* Navigation component

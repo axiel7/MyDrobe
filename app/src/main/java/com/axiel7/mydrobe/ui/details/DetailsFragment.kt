@@ -103,6 +103,7 @@ class DetailsFragment : BottomSheetDialogFragment() {
             binding.deleteButton.isEnabled = true
             binding.deleteButton.setOnClickListener {
                 clothingViewModel.deleteClothing(clothingViewModel.selectedItem.value!!)
+                dismiss()
             }
         }
 
@@ -246,7 +247,7 @@ class DetailsFragment : BottomSheetDialogFragment() {
     }
 
     private fun addChipColor(hex: String) {
-        val chip = LayoutInflater.from(requireContext())
+        val chip = LayoutInflater.from(safeContext)
                 .inflate(R.layout.chip_color, null) as Chip
         chip.chipIconTint = ColorStateList.valueOf(Color.parseColor(hex))
         chip.setOnCloseIconClickListener {
@@ -258,7 +259,7 @@ class DetailsFragment : BottomSheetDialogFragment() {
 
     @SuppressLint("RestrictedApi")
     private fun showImageMenu(v: View) {
-        val popup = PopupMenu(requireContext(), v)
+        val popup = PopupMenu(safeContext, v)
         popup.menuInflater.inflate(R.menu.menu_image, popup.menu)
         popup.setOnMenuItemClickListener {
             when (it.itemId) {

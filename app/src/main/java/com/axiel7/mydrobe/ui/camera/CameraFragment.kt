@@ -20,14 +20,12 @@ import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.axiel7.mydrobe.MyApplication
-import com.axiel7.mydrobe.R
 import com.axiel7.mydrobe.databinding.FragmentCameraBinding
 import com.axiel7.mydrobe.models.ClothingViewModel
 import com.axiel7.mydrobe.ui.details.DetailsFragment
+import com.axiel7.mydrobe.utils.UseCases
 import java.io.File
 import java.net.URI
-import java.text.SimpleDateFormat
-import java.util.*
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
 
@@ -40,7 +38,6 @@ class CameraFragment : Fragment() {
     private val binding get() = _binding!!
     private var imageCapture: ImageCapture? = null
     private lateinit var safeContext: Context
-    private lateinit var outputDirectory: File
     private lateinit var cameraExecutor: ExecutorService
 
     override fun onAttach(context: Context) {
@@ -60,16 +57,14 @@ class CameraFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Set up the listener for take photo button
+        cameraExecutor = Executors.newSingleThreadExecutor()
+
         binding.captureButton.setOnClickListener { takePhoto() }
         binding.closeButton.setOnClickListener {
             (parentFragment as DetailsFragment).restoreImageParams()
             parentFragmentManager.popBackStack()
         }
 
-        outputDirectory = getOutputDirectory()
-
-        cameraExecutor = Executors.newSingleThreadExecutor()
     }
 
     private fun takePhoto() {
@@ -77,10 +72,7 @@ class CameraFragment : Fragment() {
         val imageCapture = imageCapture ?: return
 
         // Create time-stamped output file to hold the image
-        val photoFile = File(
-            outputDirectory,
-            SimpleDateFormat(FILENAME_FORMAT, Locale.US
-            ).format(System.currentTimeMillis()) + ".jpg")
+        val photoFile = UseCases.createImageFile(safeContext)
 
         // Create output options object which contains file + metadata
         val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
@@ -153,13 +145,6 @@ class CameraFragment : Fragment() {
             safeContext, it) == PackageManager.PERMISSION_GRANTED
     }
 
-    private fun getOutputDirectory(): File {
-        val mediaDir = activity?.externalMediaDirs?.firstOrNull()?.let {
-            File(it, resources.getString(R.string.app_name)).apply { mkdirs() } }
-        return if (mediaDir != null && mediaDir.exists())
-            mediaDir else requireActivity().filesDir
-    }
-
     override fun onResume() {
         super.onResume()
         // Request camera permissions
@@ -196,7 +181,7 @@ class CameraFragment : Fragment() {
 
     companion object {
         private const val TAG = "CameraXBasic"
-        private const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
+        const val FILENAME_FORMAT = "yyyy-MM-dd-HH-mm-ss-SSS"
         private const val REQUEST_CODE_PERMISSIONS = 10
         private val REQUIRED_PERMISSIONS = arrayOf(Manifest.permission.CAMERA)
     }

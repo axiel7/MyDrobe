@@ -1,19 +1,27 @@
 package com.axiel7.mydrobe.ui.details
 
 import android.annotation.SuppressLint
+import android.app.Activity.RESULT_OK
+import android.content.Context
+import android.content.Intent
 import android.content.res.ColorStateList
 import android.graphics.Color
 import android.graphics.drawable.InsetDrawable
+import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
+import android.util.Log
 import android.util.TypedValue
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.widget.PopupMenu
+import androidx.core.content.FileProvider
 import androidx.fragment.app.activityViewModels
 import coil.load
 import coil.size.Scale
+import com.axiel7.mydrobe.BuildConfig
 import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.R
 import com.axiel7.mydrobe.databinding.FragmentDetailsBinding
@@ -21,6 +29,8 @@ import com.axiel7.mydrobe.models.Clothing
 import com.axiel7.mydrobe.models.ClothingViewModel
 import com.axiel7.mydrobe.models.Season
 import com.axiel7.mydrobe.ui.camera.CameraFragment
+import com.axiel7.mydrobe.utils.SharedPrefsHelpers
+import com.axiel7.mydrobe.utils.UseCases
 import com.github.dhaval2404.colorpicker.MaterialColorPickerDialog
 import com.github.dhaval2404.colorpicker.model.ColorShape
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -38,7 +48,10 @@ class DetailsFragment : BottomSheetDialogFragment() {
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
     private var isNewItem = false
+    private var useLegacyCamera = false
     private lateinit var newItem: Clothing
+    private lateinit var safeContext: Context
+    private var currentPhotoPath: String = ""
     private val colorsToAdd = mutableListOf<String>()
     private val colorsToRemove = mutableListOf<String>()
 
@@ -46,6 +59,13 @@ class DetailsFragment : BottomSheetDialogFragment() {
         super.onCreate(savedInstanceState)
         enterTransition = MaterialSharedAxis(MaterialSharedAxis.Z, true)
         returnTransition = MaterialSharedAxis(MaterialSharedAxis.Z, false)
+
+        useLegacyCamera = SharedPrefsHelpers.instance?.getBoolean("camera_legacy", false) ?: false
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        safeContext = context
     }
 
     override fun onCreateView(
@@ -68,7 +88,10 @@ class DetailsFragment : BottomSheetDialogFragment() {
         }
 
         if (clothingViewModel.selectedItem.value?.photoUri == null) {
-            binding.image.setOnClickListener { openCamera() }
+            binding.image.setOnClickListener {
+                if (useLegacyCamera) { openCameraIntent() }
+                else { openCamera() }
+            }
         }
         else {
             binding.image.setOnClickListener { showImageMenu(it) }
@@ -144,6 +167,38 @@ class DetailsFragment : BottomSheetDialogFragment() {
             .commit()
     }
 
+
+    private fun openCameraIntent() {
+        Intent(MediaStore.ACTION_IMAGE_CAPTURE).also { takePictureIntent ->
+            // Ensure that there's a camera activity to handle the intent
+            takePictureIntent.resolveActivity(safeContext.packageManager)?.also {
+                // Create the File where the photo should go
+                val photoFile: File = UseCases.createImageFile(safeContext)
+                photoFile.also {
+                    val photoURI: Uri = FileProvider.getUriForFile(
+                        safeContext,
+                        "${BuildConfig.APPLICATION_ID}.provider",
+                        it
+                    )
+                    currentPhotoPath = Uri.fromFile(it).toString()
+                    takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI)
+                    startActivityForResult(takePictureIntent, 1)
+                }
+            }
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (requestCode == 1 && resultCode == RESULT_OK) {
+            if (clothingViewModel.selectedItem.value?.photoUri != null) {
+                val file = File(URI.create(clothingViewModel.selectedItem.value?.photoUri!!))
+                file.delete()
+            }
+            clothingViewModel.selectedItem.value?.photoUri = currentPhotoPath
+            clothingViewModel.selectItem(clothingViewModel.selectedItem.value)
+        }
+    }
+
     private fun saveItem() {
         val name = binding.nameTextEdit.text.toString()
         val seasons = mutableListOf<Season>()
@@ -212,7 +267,8 @@ class DetailsFragment : BottomSheetDialogFragment() {
                     true
                 }
                 R.id.action_replace -> {
-                    openCamera()
+                    if (useLegacyCamera) { openCameraIntent() }
+                    else { openCamera() }
                     true
                 }
                 R.id.action_delete -> {

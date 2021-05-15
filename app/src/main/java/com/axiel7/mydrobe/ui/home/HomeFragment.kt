@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.app.ShareCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
@@ -102,6 +103,14 @@ class HomeFragment : Fragment() {
             setContentView(R.layout.bottom_sheet_main)
         }
         val share = bottomSheet.findViewById<TextView>(R.id.action_share)
+        share?.setOnClickListener {
+            ShareCompat.IntentBuilder(safeContext)
+                    .setType("text/plain")
+                    .setChooserTitle("")
+                    .setText("https://github.com/axiel7/MyDrobe")
+                    .startChooser()
+            bottomSheet.dismiss()
+        }
         val settings = bottomSheet.findViewById<TextView>(R.id.action_settings)
         settings?.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_settingsFragment)

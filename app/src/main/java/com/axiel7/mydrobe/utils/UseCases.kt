@@ -10,7 +10,6 @@ import java.util.*
 
 object UseCases {
 
-    @Throws(IOException::class)
     fun createImageFile(context: Context?): File {
         val storageDir: File? = context?.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
         return File(

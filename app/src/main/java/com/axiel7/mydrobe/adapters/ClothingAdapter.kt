@@ -64,6 +64,10 @@ class ClothingAdapter(private val context: Context,
             }
         }
 
+        holder.itemBinding.winterIcon.visibility = View.GONE
+        holder.itemBinding.springIcon.visibility = View.GONE
+        holder.itemBinding.summerIcon.visibility = View.GONE
+        holder.itemBinding.fallIcon.visibility = View.GONE
         for (season in item.seasons) {
             when (season) {
                 Season.WINTER -> holder.itemBinding.winterIcon.visibility = View.VISIBLE

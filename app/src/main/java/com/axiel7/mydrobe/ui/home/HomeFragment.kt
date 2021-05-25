@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.app.ShareCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.activityViewModels
@@ -18,8 +19,10 @@ import com.axiel7.mydrobe.MyApplication
 import com.axiel7.mydrobe.R
 import com.axiel7.mydrobe.databinding.FragmentHomeBinding
 import com.axiel7.mydrobe.models.ClothingViewModel
+import com.axiel7.mydrobe.models.Season
 import com.axiel7.mydrobe.ui.collection.CollectionFragment
 import com.axiel7.mydrobe.ui.today.TodayFragment
+import com.axiel7.mydrobe.utils.CalendarHelper
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.tabs.TabLayoutMediator
 import com.google.android.material.transition.MaterialFadeThrough
@@ -27,6 +30,7 @@ import com.google.android.material.transition.MaterialFadeThrough
 class HomeFragment : Fragment() {
 
     private lateinit var safeContext: Context
+    private val season = CalendarHelper.getSeason()
     private val clothingViewModel: ClothingViewModel by activityViewModels {
         ClothingViewModel.provideFactory(MyApplication.clothesRepository)
     }
@@ -55,8 +59,14 @@ class HomeFragment : Fragment() {
 
         TabLayoutMediator(binding.homeTabLayout, binding.homeViewPager) { tab, position ->
             when (position) {
-                0 -> tab.text = getString(R.string.title_today)
-                1 -> tab.text = getString(R.string.title_collection)
+                0 -> {
+                    tab.text = season.name
+                    tab.icon = ContextCompat.getDrawable(safeContext, getSeasonIcon(season))
+                }
+                1 -> {
+                    tab.text = getString(R.string.title_collection)
+                    tab.icon = ContextCompat.getDrawable(safeContext, R.drawable.ic_hanger_alt_24)
+                }
             }
         }.attach()
 
@@ -117,6 +127,16 @@ class HomeFragment : Fragment() {
             bottomSheet.dismiss()
         }
         binding.homeBottomAppbar.setNavigationOnClickListener { bottomSheet.show() }
+    }
+
+    private fun getSeasonIcon(season: Season): Int {
+        return when (season) {
+            Season.SUMMER -> R.drawable.ic_summer_24
+            Season.SPRING -> R.drawable.ic_spring_24
+            Season.FALL -> R.drawable.ic_fall_24
+            Season.WINTER -> R.drawable.ic_winter_24
+            else -> R.drawable.ic_spring_24
+        }
     }
 
     fun hideFab() {

@@ -60,7 +60,7 @@ class HomeFragment : Fragment() {
         TabLayoutMediator(binding.homeTabLayout, binding.homeViewPager) { tab, position ->
             when (position) {
                 0 -> {
-                    tab.text = season.name
+                    tab.text = getString(CalendarHelper.getSeasonName(season))
                     tab.icon = ContextCompat.getDrawable(safeContext, getSeasonIcon(season))
                 }
                 1 -> {

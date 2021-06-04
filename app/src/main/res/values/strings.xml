@@ -23,4 +23,7 @@
     <string name="camera_legacy_summary">Enable if you have problems while taking photos</string>
     <string name="settings">Settings</string>
     <string name="share">Share</string>
+    <string name="recently_added">Recently added</string>
+    <string name="sort_by">Sort by</string>
+    <string name="ok">OK</string>
 </resources>

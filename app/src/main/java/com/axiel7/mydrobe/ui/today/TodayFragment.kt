@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
 import com.axiel7.mydrobe.MainActivity
 import com.axiel7.mydrobe.MyApplication
+import com.axiel7.mydrobe.R
 import com.axiel7.mydrobe.adapters.ClothingAdapter
 import com.axiel7.mydrobe.databinding.FragmentTodayBinding
 import com.axiel7.mydrobe.ui.home.HomeFragment
@@ -68,11 +69,11 @@ class TodayFragment : Fragment() {
     }
 
     fun sortItems() {
-        val items = arrayOf("Recently added", "Name")
+        val items = arrayOf(getString(R.string.recently_added), getString(R.string.name))
         MaterialAlertDialogBuilder(safeContext)
-            .setTitle("Sort by")
-            .setNeutralButton("Cancel") { _, _ -> }
-            .setPositiveButton("OK") { _, _ ->
+            .setTitle(getString(R.string.sort_by))
+            .setNeutralButton(getString(R.string.cancel)) { _, _ -> }
+            .setPositiveButton(getString(R.string.ok)) { _, _ ->
                 todayViewModel.setOrder(sort)
             }
             .setSingleChoiceItems(items, sortId) { _, which ->

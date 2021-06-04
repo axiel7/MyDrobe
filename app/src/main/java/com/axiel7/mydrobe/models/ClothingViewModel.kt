@@ -6,17 +6,6 @@ import kotlinx.coroutines.launch
 
 class ClothingViewModel(private val clothesRepository: ClothesRepository) : ViewModel() {
 
-    private val exampleData = mutableListOf(
-            Clothing(name = "Jeans"),
-            Clothing(name = "T-Shirt"),
-            Clothing(name = "Pants"),
-            Clothing(name = "Jacket"),
-            Clothing(name = "Shocks"),
-            Clothing(name = "Shoes"),
-            Clothing(name = "Casual pants"),
-            Clothing(name = "Ring")
-    )
-
     val clothes: LiveData<List<Clothing>> =
             clothesRepository.getClothing().asLiveData()
 

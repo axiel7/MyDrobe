@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">MyDrobe</string>
+    <string name="title_home">Menu principal</string>
+    <string name="title_today">Hoy</string>
+    <string name="title_collection">Colección</string>
+    <string name="search">Buscar</string>
+    <string name="more">More</string>
+    <string name="sort">Ordenar</string>
+    <string name="cancel">Cancelar</string>
+    <string name="apply">Aplicar</string>
+    <string name="save">Guardar</string>
+    <string name="name">Nombre</string>
+    <string name="winter">Invierno</string>
+    <string name="spring">Primavera</string>
+    <string name="summer">Verano</string>
+    <string name="fall">Otoño</string>
+    <string name="add_color">Añadir color</string>
+    <string name="delete">Borrar</string>
+    <string name="view_image">Ver</string>
+    <string name="replace">Reemplazar</string>
+    <string name="camera">Camara</string>
+    <string name="camera_legacy_title">Usar camara del sistema</string>
+    <string name="camera_legacy_summary">Habilitelo si tiene problemas para tomar fotos</string>
+    <string name="settings">Configuracion</string>
+    <string name="share">Compartir</string>
+    <string name="recently_added">Añadido recientemente</string>
+    <string name="sort_by">Ordenar</string>
+</resources>
